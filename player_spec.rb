@@ -12,7 +12,7 @@ describe Player do
         @player.name.should == ("Larry")
     end
 
-    it "has an intial health" do
+    it "has an initial health" do
         @player.health.should == 150
     end
 
@@ -53,6 +53,20 @@ describe Player do
 
         it "is wimpy" do
             @player.should_not be_strong
+        end
+    end
+
+    context "in a collection of players" do
+        before do
+            @player1 = Player.new("moe", 100)
+            @player2 = Player.new("larry", 200)
+            @player3 = Player.new("curly", 300)
+
+            @players = [@player1, @player2, @player3]
+        end
+
+        it "is sorted by decreasing score" do
+            @players.sort.should == [@player3, @player2, @player1]
         end
     end
 
